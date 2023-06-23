@@ -5,8 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>
-        prova1
-    </h1>
+<ul>
+    <li th:each="pizza : ${pizze}">
+        [[${pizza.name}]]
+    </li>
+</ul>
 </body>
 </html>
