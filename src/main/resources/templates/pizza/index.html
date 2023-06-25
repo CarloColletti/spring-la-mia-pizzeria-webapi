@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="fragments :: head"></th:block>
+  <title>home</title>
+</head>
+<body>
+  <h1>Pagina con tutte le pizze</h1>
+  <ul>
+    <li th:each="pizza : ${pizze}">
+      <a th:href="@{|/pizza/${pizza.id}|}">
+        <span th:text="${pizza.name}"></span>
+      </a>
+    </li>
+  </ul>
+</body>
+</html>

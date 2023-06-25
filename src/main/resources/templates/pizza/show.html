@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments :: head"></th:block>
-    <title>Title</title>
+    <title>pizza singola</title>
 </head>
 <body>
-<ul>
-    <li th:each="pizza : ${pizze}">
-        [[${pizza.name}]]
-    </li>
-</ul>
+    <h1>Pizza singola</h1>
+    <ul>
+        <li>
+            <span th:text="${pizza.name}"></span>
+        </li>
+    </ul>
 </body>
 </html>
