@@ -5,11 +5,28 @@
     <title>pizza singola</title>
 </head>
 <body>
-    <h1>Pizza singola</h1>
-    <ul>
-        <li>
-            <span th:text="${pizza.name}"></span>
-        </li>
-    </ul>
+    <!--  navbar  -->
+    <th:block th:replace="fragments :: navbar"></th:block>
+
+    <div class="container py-5">
+        <div class="row">
+            <!-- col immagine -->
+            <div class="col-4">
+                <img th:src="${pizza.image}" th:alt="${pizza.name}" class="img-fluid rounded-5">
+            </div>
+
+
+            <!-- col testo -->
+            <div class="col-8">
+                <ul>
+                    <li th:text="${pizza.name}"></li>
+                    <li th:text="${pizza.description}"></li>
+                    <li th:text="${pizza.price}"></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>

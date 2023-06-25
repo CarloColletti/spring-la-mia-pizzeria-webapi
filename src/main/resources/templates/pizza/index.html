@@ -5,13 +5,28 @@
   <title>home</title>
 </head>
 <body>
-  <h1>Pagina con tutte le pizze</h1>
-  <ul>
-    <li th:each="pizza : ${pizze}">
-      <a th:href="@{|/pizza/${pizza.id}|}">
-        <span th:text="${pizza.name}"></span>
-      </a>
-    </li>
-  </ul>
+  <!--  navbar  -->
+  <th:block th:replace="fragments :: navbar"></th:block>
+
+  <main>
+    <div class="container">
+      <h1 class="text-center py-3">Pagina con tutte le pizze</h1>
+      <!-- row  -->
+      <div class="row">
+        <!-- col -->
+        <div class="col-4 p-3"  th:each="pizza : ${pizze}">
+          <!-- inizio card -->
+          <div class="card">
+            <img th:src="${pizza.image}" th:alt="${pizza.name}" class="card-img-top" >
+            <div class="card-body">
+              <h5 class="card-title" th:text="${pizza.name}"></h5>
+              <p class="card-text" th:text="${pizza.description}"></p>
+              <a th:href="@{|/pizza/${pizza.id}|}" class="btn btn-success">Go detail</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
