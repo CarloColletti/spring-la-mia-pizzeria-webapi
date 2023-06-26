@@ -46,4 +46,9 @@ public class PizzaController {
             }
         return "pizza/show";
     }
+
+    @GetMapping("/create")
+    public String create(){
+        return "pizza/create";
+    }
 }
