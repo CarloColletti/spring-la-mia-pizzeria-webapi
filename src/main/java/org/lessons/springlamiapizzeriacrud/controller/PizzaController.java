@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,8 +49,17 @@ public class PizzaController {
         return "pizza/show";
     }
 
+    //controller che restituisce la pagina create con un attributo vuoto
     @GetMapping("/create")
-    public String create(){
+    public String create(Model model){
+        //aggiungo al model un attributo pizza vuoto
+        model.addAttribute(new Pizza());
         return "pizza/create";
+    }
+
+    // controller che gestisce il post del form
+    @PostMapping("/create")
+    public String store(){
+        return "redirect:/pizza";
     }
 }
