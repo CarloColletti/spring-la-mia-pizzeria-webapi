@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.awt.print.Book;
@@ -59,7 +56,9 @@ public class PizzaController {
 
     // controller che gestisce il post del form
     @PostMapping("/create")
-    public String store(){
+    public String store(@ModelAttribute("pizza") Pizza formPizza
+    ) {
+        pizzaRepository.save(formPizza);
         return "redirect:/pizza";
     }
 }
