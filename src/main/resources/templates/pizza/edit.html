@@ -14,7 +14,8 @@
         <div class="container">
             <h1 th:text="isEdit ? 'Modifica Pizza' : 'Nuova Pizza' "></h1>
             <form
-                    th:action="@{/pizza/create}"
+                    th:with="formAction= ${isEdit ? '/pizza/edit/' + pizza.id : '/pizza/create'}"
+                    th:action="@{${formAction}}"
                     th:object="${pizza}"
                     method="post"
                     id="pizza-form"
@@ -32,7 +33,7 @@
                     </div>
                     <div class="col-12 py-3">
                         <label class="form-label" for="price">Prezzo</label>
-                        <input type="number" id="price" th:field="*{price}" class="form-control">
+                        <input type="text" id="price" th:field="*{price}" class="form-control">
                     </div>
                     <div class="col-12 py-3">
                         <label class="form-label" for="image">link immagine</label>

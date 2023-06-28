@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -75,5 +76,28 @@ public class PizzaController {
         }
         model.addAttribute("pizza", result.get());
         return "pizza/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String toEdit(@PathVariable Integer id, @ModelAttribute("pizza") Pizza formPizza) {
+        Optional<Pizza> result = pizzaRepository.findById(id);
+        if (result.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " la pizza con id: " + id + " non è stata trovata ");
+        }
+        //trasferisco i dati non compresi nel form
+        formPizza.setId(result.get().getId());
+        //salvo il resto del form
+        pizzaRepository.save(formPizza);
+        return "redirect:/pizza";
+    }
+
+
+    //--------------metodi custom---------------------
+    private Pizza getPizzaById(Integer id) {
+        Optional<Pizza> result = pizzaRepository.findById(id);
+        if (result.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " la pizza con id: " + id + " non è stata trovata ");
+        }
+        return result.get();
     }
 }
