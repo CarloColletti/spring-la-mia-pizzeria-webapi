@@ -5,6 +5,7 @@ import org.lessons.springlamiapizzeriacrud.model.Pizza;
 import org.lessons.springlamiapizzeriacrud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class PizzaController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
+    //--------------metodo index---------------------
     //route index
     @GetMapping
     public String index (Model model){
@@ -31,6 +33,7 @@ public class PizzaController {
         return "pizza/index";
     }
 
+    //--------------metodo show---------------------
     //route show
     @GetMapping("/{id}")
     public String show(Model model, @PathVariable("id") Integer id){
@@ -46,6 +49,7 @@ public class PizzaController {
         return "pizza/show";
     }
 
+    //--------------metodo create---------------------
     //controller che restituisce la pagina create con un attributo vuoto
     @GetMapping("/create")
     public String create(Model model){
@@ -60,5 +64,16 @@ public class PizzaController {
     ) {
         pizzaRepository.save(formPizza);
         return "redirect:/pizza";
+    }
+
+    //--------------metodo edit---------------------
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        Optional<Pizza> result = pizzaRepository.findById(id);
+        if (result.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " la pizza con id: " + id + " non è stata trovata ");
+        }
+        model.addAttribute("pizza", result.get());
+        return "pizza/edit";
     }
 }

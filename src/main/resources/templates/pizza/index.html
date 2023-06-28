@@ -33,7 +33,8 @@
             <td th:text="${pizza.description}"></td>
             <td th:text="${pizza.price}"></td>
             <td>
-              <a th:href="@{|/pizza/${pizza.id}|}" class="btn btn-success">Go detail</a>
+              <a th:href="@{|/pizza/${pizza.id}|}"><i class="fa-solid fa-circle-info"></i></a>
+              <a th:href="@{|/pizza/edit/${pizza.id}|}"><i class="fa-solid fa-file-pen"></i></a>
             </td>
           </tr>
           </tbody>
