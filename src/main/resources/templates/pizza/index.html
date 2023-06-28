@@ -17,18 +17,27 @@
       </div>
       <!-- row  -->
       <div class="row">
-        <!-- col -->
-        <div class="col-4 p-3"  th:each="pizza : ${pizze}">
-          <!-- inizio card -->
-          <div class="card">
-            <img th:src="${pizza.image}" th:alt="${pizza.name}" class="card-img-top" >
-            <div class="card-body">
-              <h5 class="card-title" th:text="${pizza.name}"></h5>
-              <p class="card-text" th:text="${pizza.description}"></p>
+        <!--  inizio tabella  -->
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">descrizione</th>
+            <th scope="col">prezzo</th>
+            <th scope="col">Funzioni</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="pizza : ${pizze}">
+            <th scope="row" th:text="${pizza.name}"></th>
+            <td th:text="${pizza.description}"></td>
+            <td th:text="${pizza.price}"></td>
+            <td>
               <a th:href="@{|/pizza/${pizza.id}|}" class="btn btn-success">Go detail</a>
-            </div>
-          </div>
-        </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </main>
