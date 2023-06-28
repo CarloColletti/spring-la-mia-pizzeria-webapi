@@ -38,15 +38,17 @@ public class PizzaController {
     //route show
     @GetMapping("/{id}")
     public String show(Model model, @PathVariable("id") Integer id){
-        Optional<Pizza> pizza = pizzaRepository.findById(id);
-            if(pizza.isPresent()) {
-                model.addAttribute("pizza", pizza.get());
-            } else {
-                throw new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Errore 404: id: " + id + " non trovato"
-                );
-            }
+//        Optional<Pizza> pizza = pizzaRepository.findById(id);
+//            if(pizza.isPresent()) {
+//                model.addAttribute("pizza", pizza.get());
+//            } else {
+//                throw new ResponseStatusException(
+//                        HttpStatus.NOT_FOUND,
+//                        "Errore 404: id: " + id + " non trovato"
+//                );
+//            }
+        Pizza pizza = getPizzaById(id);
+        model.addAttribute("pizza", pizza);
         return "pizza/show";
     }
 
@@ -70,22 +72,25 @@ public class PizzaController {
     //--------------metodo edit---------------------
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        Optional<Pizza> result = pizzaRepository.findById(id);
-        if (result.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " la pizza con id: " + id + " non è stata trovata ");
-        }
-        model.addAttribute("pizza", result.get());
+//        Optional<Pizza> result = pizzaRepository.findById(id);
+//        if (result.isEmpty()){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " la pizza con id: " + id + " non è stata trovata ");
+//        }
+        Pizza pizza =getPizzaById(id);
+        model.addAttribute("pizza", pizza);
         return "pizza/edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String toEdit(@PathVariable Integer id, @ModelAttribute("pizza") Pizza formPizza) {
-        Optional<Pizza> result = pizzaRepository.findById(id);
-        if (result.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " la pizza con id: " + id + " non è stata trovata ");
-        }
+    public String toEdit(@PathVariable Integer id, Model model, @ModelAttribute("pizza") Pizza formPizza) {
+//        Optional<Pizza> result = pizzaRepository.findById(id);
+//        if (result.isEmpty()){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " la pizza con id: " + id + " non è stata trovata ");
+//        }
+        Pizza pizza =getPizzaById(id);
+        model.addAttribute("pizza", pizza);
         //trasferisco i dati non compresi nel form
-        formPizza.setId(result.get().getId());
+        formPizza.setId(pizza.getId());
         //salvo il resto del form
         pizzaRepository.save(formPizza);
         return "redirect:/pizza";
