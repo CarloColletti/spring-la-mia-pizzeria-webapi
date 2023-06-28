@@ -55,7 +55,7 @@ public class PizzaController {
     public String create(Model model){
         //aggiungo al model un attributo pizza vuoto
         model.addAttribute(new Pizza());
-        return "pizza/create";
+        return "pizza/edit";
     }
 
     // controller che gestisce il post del form

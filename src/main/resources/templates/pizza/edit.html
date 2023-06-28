@@ -4,14 +4,15 @@
     <th:block th:replace="fragments :: head"></th:block>
     <title>Create New Pizza</title>
 </head>
-<body>
+<body th:with="isEdit=${pizza.id != null}">
     <!--  navbar  -->
     <th:block th:replace="fragments :: navbar"></th:block>
 
-    <h1>pizza create </h1>
+
     <main>
 
         <div class="container">
+            <h1 th:text="isEdit ? 'Modifica Pizza' : 'Nuova Pizza' "></h1>
             <form
                     th:action="@{/pizza/create}"
                     th:object="${pizza}"
