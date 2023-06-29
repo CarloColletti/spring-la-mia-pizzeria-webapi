@@ -3,6 +3,8 @@ package org.lessons.springlamiapizzeriacrud.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pizze")
@@ -17,8 +19,12 @@ public class Pizza {
     @Column(nullable = false, unique = true)
     private String name;
     private String description;
+
     private String image;
     private BigDecimal price;
+
+    @OneToMany(mappedBy = "pizza")
+    private List<Offers> offers = new ArrayList<>();
 
     //getter
     public Integer getId() {
