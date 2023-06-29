@@ -103,6 +103,6 @@ public class PizzaController {
         if (result.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, " la pizza con id: " + id + " non è stata trovata ");
         }
-        return result.get();
+        return result.get();;
     }
 }
