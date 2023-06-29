@@ -9,6 +9,7 @@
     <th:block th:replace="fragments :: navbar"></th:block>
 
     <div class="container py-5">
+        <!--dettaglio-->
         <div class="row">
             <!-- col immagine -->
             <div class="col-4">
@@ -23,6 +24,33 @@
                     <li th:text="${pizza.description}"></li>
                     <li th:text="${pizza.price}"></li>
                 </ul>
+            </div>
+        </div>
+
+        <!--tabella offerte-->
+        <div class="row py-5">
+            <h2>Lista delle offerte</h2>
+
+            <div class="col-12">
+
+            <!--init table-->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Titolo Offerta</th>
+                        <th scope="col">Data Inizio</th>
+                        <th scope="col">Data fine</th>
+                        <th scope="col">Funzioni</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="offer : *{offers}"  th:object="${offer}">
+                        <td>[[*{title}]]</td>
+                        <td>[[*{#temporals.format(startDate, 'dd/MM/yyyy')}]]</td>
+                        <td>[[*{#temporals.format(endDate, 'dd/MM/yyyy')}]]</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
