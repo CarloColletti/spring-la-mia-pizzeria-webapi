@@ -3,3 +3,6 @@ INSERT INTO `pizze` (`price`, `description`, `image`, `name`) VALUES ('7.50', 'P
 INSERT INTO `pizze` (`price`, `description`, `image`, `name`) VALUES ('8.0', 'Pizza con tanti formaggi diversi', 'https://i0.wp.com/www.piccolericette.net/piccolericette/wp-content/uploads/2017/06/3234_Pizza.jpg?resize=895%2C616&ssl=1', 'Quattro formaggi');
 INSERT INTO `pizze` (`price`, `description`, `image`, `name`) VALUES ('7.50', 'Pizza con patatine e salcicce', 'https://www.dueamicheincucina.it/wp-content/uploads/2019/09/Pizza-patate-e-salsiccia-1-1024x682.jpg', 'Patate e Salcicce');
 INSERT INTO `pizze` (`price`, `description`, `image`, `name`) VALUES ('8.0', 'Pizza rossa con salciccia e grana', 'https://blog.giallozafferano.it/incucinaconmary/wp-content/uploads/2012/09/pizap.com10.5673224451020361347995085379.jpg', 'Sbriciolata');
+INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `password`) VALUES (NULL, 'user@email.com', 'User', 'User', '{noop}User'), (NULL, 'admin@email.com', 'Admin', 'Admin', '{noop}Admin')
+INSERT INTO `roles` (`id`, `name`) VALUES (NULL, 'USER'), (NULL, 'ADMIN')
+INSERT INTO `role_user` (`user_id`, `role_id`) VALUES ('1', '1'), ('2', '2')

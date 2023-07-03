@@ -1,7 +1,8 @@
 package org.lessons.springlamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
+
 
 import java.time.LocalDate;
 
