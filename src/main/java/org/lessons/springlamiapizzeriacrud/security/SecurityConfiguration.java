@@ -34,7 +34,7 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/pizza/**").hasAuthority("ADMIN")
                 .requestMatchers("/pizza").hasAnyAuthority("ADMIN","USER")
                 .requestMatchers("/pizza/create").hasAuthority("ADMIN")
                 .requestMatchers("/pizza/edit/**").hasAuthority("ADMIN")
@@ -45,6 +45,8 @@ public class SecurityConfiguration {
                 .requestMatchers(("/**")).permitAll()
                 .and().formLogin()
                 .and().logout();
+        //disabilito csrf per permettere a postman di effettuare le chiamate
+        http.csrf().disable();
         return http.build();
     }
 
