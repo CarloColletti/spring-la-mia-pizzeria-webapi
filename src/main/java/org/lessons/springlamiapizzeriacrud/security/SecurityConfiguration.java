@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/pizza/edit/**").hasAuthority("ADMIN")
                 //per quando finisco di creare le pagine
                 // .requestMatchers("/ingredients").hasAuthority("ADMIN")
-                //.requestMatchers("/offers/**").hasAuthority("ADMIN")
+                .requestMatchers("/offers/**").hasAuthority("ADMIN")
                 .requestMatchers("/pizza/**").hasAnyAuthority("ADMIN","USER")
                 .requestMatchers(("/**")).permitAll()
                 .and().formLogin()
